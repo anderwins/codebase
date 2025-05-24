@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" 
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ulb.view.MetaDataViewController">
+
+    <children>
+        <VBox spacing="10"
+              AnchorPane.topAnchor="0.0"
+              AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0"
+              styleClass="metadata-view"
+              style="-fx-padding: 20;">
+
+            <!-- Titre de la vue -->
+            <Label fx:id="headerLabel"
+                   text="%metadata.title"
+                   styleClass="section-title"/>
+
+            <!-- Champs de métadonnées -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="titleLabel"
+                       text="%metadata.label.title"/>
+                <TextField fx:id="titleField"
+                           promptText="%metadata.prompt.title"
+                           HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="artistLabel"
+                       text="%metadata.label.artist"/>
+                <TextField fx:id="artistField"
+                           promptText="%metadata.prompt.artist"
+                           HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="albumLabel"
+                       text="%metadata.label.album"/>
+                <TextField fx:id="albumField"
+                           promptText="%metadata.prompt.album"
+                           HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="yearLabel"
+                       text="%metadata.label.year"/>
+                <TextField fx:id="yearField"
+                           promptText="%metadata.prompt.year"
+                           HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="durationLabel"
+                       text="%metadata.label.duration"/>
+                <TextField fx:id="durationField"
+                           promptText="%metadata.prompt.duration"
+                           HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <!-- Boutons -->
+            <HBox spacing="20" alignment="CENTER">
+                <Button fx:id="saveButton"
+                        text="%metadata.button.save"
+                        onAction="#handleSaveAction"
+                        styleClass="save-button"/>
+                <Button fx:id="cancelButton"
+                        text="%metadata.button.cancel"
+                        onAction="#handleCancelAction"
+                        styleClass="cancel-button"/>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

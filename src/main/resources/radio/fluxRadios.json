@@ -1,0 +1,11 @@
+[
+    {
+      "title": "BelRTL",
+      "streamUrl": "http://belrtl.ice.infomaniak.ch/belrtl-mp3-192.mp3"
+    },
+    {
+      "title": "Skyrock",
+      "streamUrl": "http://icecast.skyrock.net/s/natio_mp3_128k"
+    }
+  ]
+  

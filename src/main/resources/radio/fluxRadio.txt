@@ -1,0 +1,2 @@
+BelRTL;http://belrtl.ice.infomaniak.ch/belrtl-mp3-192.mp3
+Skyrock;http://icecast.skyrock.net/s/natio_mp3_128k

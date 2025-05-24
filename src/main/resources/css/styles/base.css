@@ -1,0 +1,6 @@
+/* Base Styles */
+.root {
+    -fx-background-color: #fafafa;
+    -fx-font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+

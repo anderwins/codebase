@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ulb.view.LibraryViewController"
+            fitToWidth="true"
+            styleClass="home-view">
+
+    <VBox spacing="30" styleClass="home-content">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <!-- Titre localisé de la bibliothèque -->
+        <Label fx:id="libraryTitleLabel"
+               text="%library.title"
+               styleClass="welcome-label"/>
+
+        <!-- Bouton d'ajout localisé 
+        <Button fx:id="addButton"
+                text="%library.addButton"
+                styleClass="icon-buttons"/>-->
+
+        <VBox spacing="16" styleClass="recent-section">
+            <!--
+            <Label text="%library.myPlaylists" styleClass="section-title"/> 
+            <FlowPane 
+                fx:id="playlistsContainer"
+                hgap="10" vgap="10" alignment="CENTER_LEFT"
+                styleClass="album-grid">
+            </FlowPane> 
+            -->
+        </VBox>
+
+        <VBox spacing="16" styleClass="recent-section">
+            <!-- Section localisée “My Songs” -->
+            <Label fx:id="mySongsLabel"
+                   text="%library.mySongs"
+                   styleClass="section-title"/>
+            <VBox fx:id="tracksContainer"
+                  alignment="CENTER_LEFT"
+                  styleClass="album-grid">
+            </VBox>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

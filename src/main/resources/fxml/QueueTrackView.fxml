@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Button?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ulb.view.QueueTrackViewController"
+      fx:id="root"
+      spacing="10" 
+      styleClass="queue-track-row"
+      alignment="CENTER_LEFT">
+    
+    <!-- Informations sur la musique -->
+    <VBox spacing="2" HBox.hgrow="ALWAYS">
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="titleLabel" text="%queue.track.title" styleClass="queue-track-title"/>
+            <Label text="-" styleClass="queue-track-separator"/>
+            <Label fx:id="artistLabel" text="%queue.track.artist" styleClass="queue-track-artist"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label fx:id="yearLabel" text="%queue.track.year" styleClass="queue-track-year"/>
+            <Label fx:id="durationLabel" text="%queue.track.duration" styleClass="queue-track-duration"/>
+        </HBox>
+    </VBox>
+
+    <!-- Bouton de suppression -->
+    <Button fx:id="removeButton" text="%queue.track.remove" styleClass="remove-track-button"/>
+</HBox>

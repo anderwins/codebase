@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ulb.view.PlayListFrontViewController"
+      styleClass="album-card"
+      onMouseClicked="#handlePlaylistClick">
+
+    <StackPane styleClass="album-art-container">
+        <Rectangle fx:id="albumBackground"
+                   width="150" height="150"
+                   styleClass="album-art-placeholder"/>
+        <ImageView fx:id="albumCover"
+                   fitWidth="150" fitHeight="150"
+                   preserveRatio="true"/>
+        <StackPane fx:id="playIconContainer"
+                   styleClass="play-icon-container"
+                   visible="false">
+            <ImageView fitWidth="40" fitHeight="40" preserveRatio="true">
+                <image>
+                    <Image url="@../icons/play.png"/>
+                </image>
+            </ImageView>
+        </StackPane>
+    </StackPane>
+
+    <HBox spacing="10" alignment="CENTER_LEFT"
+          styleClass="playlist-info-container">
+        <padding>
+            <Insets top="8" right="8" bottom="8" left="8"/>
+        </padding>
+
+        <!-- Titre dynamique, fixé par setTitle() -->
+        <Label fx:id="title"
+               styleClass="album-title"
+               wrapText="true"
+               HBox.hgrow="ALWAYS"/>
+
+        <!-- Menu button traduit via ressources -->
+        <MenuButton text="⋮" styleClass="menu-button">
+            <items>
+                <MenuItem fx:id="addCoverItem"
+                          text="%playlist.menu.add_cover"
+                          onAction="#handleCover"/>
+                <MenuItem fx:id="deletePlaylistItem"
+                          text="%playlist.menu.delete_playlist"
+                          onAction="#handleDeletePlaylist"/>
+            </items>
+        </MenuButton>
+    </HBox>
+</VBox>

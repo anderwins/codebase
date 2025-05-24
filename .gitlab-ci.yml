@@ -1,0 +1,51 @@
+image: maven:3.9.5-eclipse-temurin-21
+
+stages:
+  - test
+  - release
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+before_script:
+  - java -version
+  - apt-get update && apt-get install -y openjfx
+  - export JAVA_FX_PATH=/usr/share/openjfx/lib  # Set path to JavaFX native libraries
+
+test:
+  stage: test
+  script:
+    - mvn test -e -Djavafx.headless=true -Djava.awt.headless=true -Djava.library.path=$JAVA_FX_PATH
+  only:
+    - main
+    - dev
+  allow_failure: false
+
+build:
+  stage: release
+  script:
+    - mvn clean package -DskipTests # improve performances, since tests are run anyway in another job
+    - mkdir -p release
+    - mv target/*.jar release/
+  artifacts:
+    paths:
+      - release/*.jar
+  only:
+    - main
+
+release_job:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Running release job for tag $CI_COMMIT_TAG"
+  release:
+    tag_name: '$CI_COMMIT_TAG'
+    description: 'Automated release for version $CI_COMMIT_TAG'
+    assets:
+      links:
+        - name: "Download JAR"
+          url: "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID/artifacts/raw/release/*.jar"
+          filepath: "/release/*.jar"
+          link_type: "package"

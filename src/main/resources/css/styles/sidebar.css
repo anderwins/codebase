@@ -1,0 +1,29 @@
+/* Sidebar Styles */
+.sidebar {
+    -fx-background-color: #f0f2f5;
+    -fx-padding: 24;
+    -fx-spacing: 18;
+    -fx-min-width: 240;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 2, 0);
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+}
+
+.sidebar Button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-font-size: 15px;
+    -fx-cursor: hand;
+    -fx-padding: 12 18;
+    -fx-background-radius: 12;
+    -fx-graphic-text-gap: 10;
+}
+
+.sidebar Button:hover {
+    -fx-background-color: linear-gradient(to right, #e8edf7, #e0e6f0);
+    -fx-text-fill: #4361ee;
+}
+
+.sidebar Button:pressed {
+    -fx-background-color: linear-gradient(to right, #e0e6f0, #d8deea);
+}

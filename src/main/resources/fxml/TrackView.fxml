@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ulb.view.TrackViewController"
+      spacing="5" style="-fx-padding: 5;">
+
+    <HBox spacing="10" style="-fx-padding: 5;" onMouseClicked="#handleTrackClick" HBox.hgrow="ALWAYS">
+        <StackPane styleClass="album-art-container">
+            <Rectangle width="60" height="60" styleClass="album-art-placeholder"/>
+            <ImageView fx:id="coverImageView" fitWidth="60" fitHeight="60" preserveRatio="true"/>
+        </StackPane>
+
+        <VBox spacing="5" alignment="CENTER_LEFT" maxWidth="Infinity" VBox.vgrow="ALWAYS">
+            <VBox spacing="2">
+                <Label fx:id="titleLabel" text="%track.titlePlaceholder" styleClass="track-title"/>
+                <Label fx:id="artistLabel" text="%track.artistPlaceholder" styleClass="track-artist"/>
+            </VBox>
+            <HBox spacing="10">
+                <Label fx:id="yearLabel" text="%track.yearLabel" styleClass="track-year"/>
+                <Label fx:id="durationLabel" text="%track.durationFormat" styleClass="track-duration"/>
+            </HBox>
+        </VBox>
+
+        <Region fx:id="spacer" HBox.hgrow="ALWAYS"/>
+
+        <MenuBar styleClass="custom-menu-bar">
+            <Menu text="⋮">
+                <Menu fx:id="playlistsMenu" text="%track.menu.addToPlaylist"/>
+
+                <!-- 🔥 Ajout des IDs pour pouvoir rafraîchir dynamiquement -->
+                <MenuItem fx:id="menuItemChangeMetadata" text="%track.menu.changeMetadata" onAction="#handleMetaData"/>
+                <MenuItem fx:id="menuItemAddToQueue" text="%track.menu.addToQueue" onAction="#handleAddToQueue"/>
+                <MenuItem fx:id="menuItemImportLyrics" text="%track.menu.importLyrics" onAction="#handleLyrics"/>
+            </Menu>
+        </MenuBar>
+    </HBox>
+</VBox>

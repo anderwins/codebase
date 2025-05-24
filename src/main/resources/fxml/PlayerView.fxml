@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="ulb.view.PlayerViewController"
+    fx:id="mainContainer"
+    styleClass="player-view"
+    spacing="10">
+    
+    <padding>
+        <Insets top="10" right="20" bottom="10" left="20"/>
+    </padding>
+
+    <!-- Conteneur principal du lecteur (en haut) -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <ImageView fx:id="albumArt" fitHeight="60" fitWidth="60" preserveRatio="true">
+            <Image url="@../default_cover_image/default_cover_image.jpg"/>
+        </ImageView>
+
+        <VBox HBox.hgrow="ALWAYS" spacing="5">
+            <Label fx:id="trackTitle" styleClass="track-title" text="%player.noTrackPlaying"/>
+            <Label fx:id="artistName" styleClass="artist-name" text="%player.artistPlaceholder"/>
+            
+            <HBox alignment="CENTER" spacing="10">
+
+                <Button fx:id="visualizerButton" onAction="#showVizualizer" styleClass="control-button">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+                            <Image url="@../icons/visualizer.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="lyricsButton" onAction="#handleLyrics" styleClass="control-button">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+                            <Image url="@../icons/lyrics.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="karaokeButton" onAction="#handleLyrics" styleClass="control-button">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+                            <Image url="@../icons/karaoke.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="prevButton" onAction="#handlePrevious" styleClass="control-button">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+                            <Image url="@../icons/previous.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="playPauseButton" onAction="#handlePlayPause" styleClass="control-button">
+                    <graphic>
+                        <StackPane>
+                            <ImageView fx:id="playIconView" fitHeight="24" fitWidth="24" preserveRatio="true">
+                                <Image url="@../icons/play.png"/>
+                            </ImageView>
+                            <ImageView fx:id="pauseIconView" fitHeight="24" fitWidth="24" preserveRatio="true" visible="false" managed="false">
+                                <Image url="@../icons/pause.png"/>
+                            </ImageView>
+                        </StackPane>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="nextButton" onAction="#handleNext" styleClass="control-button">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+                            <Image url="@../icons/next.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="fadeButton" onAction="#setFade" styleClass="control-button">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+                            <Image url="@../icons/fade.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <HBox alignment="CENTER" spacing="10">
+                    <VBox spacing="0" alignment="CENTER">
+                        <HBox prefWidth="100" alignment="CENTER">
+                            <Label fx:id="volumeMinLabel" text="%player.volume.min" />
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="volumeMaxLabel" text="%player.volume.max" />
+                        </HBox>
+
+                        <Slider fx:id="volumeSlider" prefWidth="100" value="100" />
+                    </VBox>
+
+                    <VBox spacing="0" alignment="CENTER">
+                        <HBox prefWidth="100" alignment="CENTER">
+                            <Label fx:id="balanceLeftLabel" text="%player.balance.left" />
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="balanceRightLabel" text="%player.balance.right" />
+                        </HBox>
+
+                        <Slider fx:id="balanceSlider"
+                                min="-1"
+                                max="1"
+                                value="0"
+                                blockIncrement="0.1"
+                                showTickMarks="false"
+                                showTickLabels="false"
+                                prefWidth="100"
+                                maxHeight="20" />
+                    </VBox>
+
+                    <ComboBox fx:id="speedComboBox" onAction="#setSpeed" prefWidth="75">
+                        <HBox.margin>
+                            <Insets left="30"/>
+                        </HBox.margin>
+                    </ComboBox>
+
+                </HBox>
+
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <Label fx:id="currentTime" text="%player.time.zero"/>
+                <Slider fx:id="progressSlider" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="totalTime" text="%player.time.zero"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <ScrollPane fx:id="lyricsContainerPlaceholder" 
+               visible="false" 
+               managed="false"
+               fitToWidth="true"
+               style="-fx-background: transparent; -fx-background-color: transparent;">
+        <content/>
+    </ScrollPane>
+
+    <StackPane fx:id="visualizerPane"
+               prefHeight="300.0"
+               visible="false"
+               managed="false"
+               style="-fx-background-color: black;">
+    </StackPane>
+</VBox>

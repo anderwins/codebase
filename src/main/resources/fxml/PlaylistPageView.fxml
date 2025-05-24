@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ulb.view.PlaylistPageViewController"
+            fitToWidth="true"
+            styleClass="home-view">
+
+    <VBox spacing="30" styleClass="home-content">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <!-- Titre localisé -->
+        <Label fx:id="titleLabel"
+               text="%playlistPage.title"
+               styleClass="welcome-label"/>
+
+        <!-- Création d’une nouvelle playlist -->
+        <HBox spacing="10" alignment="CENTER" styleClass="search-container">
+            <TextField fx:id="inputField"
+                       promptText="%playlistPage.newPrompt"
+                       HBox.hgrow="ALWAYS"/>
+            <Button fx:id="createButton"
+                    text="%playlistPage.createButton"
+                    onAction="#handleCreateNewPlaylistClick"
+                    defaultButton="true"/>
+        </HBox>
+
+        <!-- Section des playlists existantes -->
+        <Label fx:id="sectionTitleLabel"
+               text="%playlistPage.sectionTitle"
+               styleClass="section-title"/>
+        <FlowPane fx:id="playlistsContainer"
+                  styleClass="album-grid"
+                  hgap="20" vgap="20">
+        </FlowPane>
+
+    </VBox>
+</ScrollPane>

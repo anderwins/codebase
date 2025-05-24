@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ulb.view.PlayListFrontViewController"
+      styleClass="album-card"
+      onMouseClicked="#handlePlaylistClick">
+
+    <StackPane styleClass="album-art-container">
+        <Rectangle width="150" height="150" styleClass="album-art-placeholder"/>
+        <Label fx:id="overlayLabel" text="%playlist.front.overlay" styleClass="album-art-overlay"/>
+    </StackPane>
+    <Label fx:id="titleLabel" text="%playlist.front.title" styleClass="album-title"/>
+    <Label fx:id="artistLabel" text="%playlist.front.artist" styleClass="album-artist"/>
+</VBox>

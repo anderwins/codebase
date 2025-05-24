@@ -1,0 +1,100 @@
+/* Home View Styles */
+.home-view {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+}
+
+.home-view .viewport {
+    -fx-background-color: transparent;
+}
+
+.home-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 10;
+}
+
+.home-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #dde1e7;
+    -fx-background-radius: 8;
+}
+
+.home-content, .page-wrapper{
+    -fx-background-color: #fafafa;
+}
+
+.genre-pill {
+    -fx-background-color: #e0e6f0;
+    -fx-background-radius: 20;
+    -fx-text-fill: #4b5563;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+}
+
+.genre-pill:hover {
+    -fx-background-color: #d8e2ff;
+    -fx-text-fill: #4361ee;
+}
+
+.album-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+    -fx-spacing: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 2, 2);
+}
+
+.album-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 4, 4);
+    -fx-cursor: hand;
+}
+
+.album-art-container {
+    -fx-background-radius: 8;
+    -fx-padding: 0 0 8 0;
+}
+
+.album-art-placeholder {
+    -fx-fill: linear-gradient(to bottom right, #e0e6f0, #d8e2ff);
+    -fx-arc-width: 16;
+    -fx-arc-height: 16;
+}
+
+.album-art-overlay {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4361ee;
+    -fx-opacity: 0.5;
+}
+
+.album-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.album-artist {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6b7280;
+}
+
+.recent-section {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.album-grid {
+    -fx-background-color: transparent;
+}
+
+.welcome-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+    -fx-padding: 0 0 10 0;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}

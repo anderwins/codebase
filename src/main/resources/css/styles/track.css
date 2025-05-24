@@ -1,0 +1,39 @@
+.album-art-container {
+    -fx-background-radius: 8;
+    -fx-padding: 0 0 8 0;
+}
+
+.album-art-placeholder {
+    -fx-fill: linear-gradient(to bottom right, #e0e6f0, #d8e2ff);
+    -fx-arc-width: 16;
+    -fx-arc-height: 16;
+}
+
+.slider .track {
+    -fx-background-color: #e0e6f0;
+    -fx-background-radius: 4;
+}
+
+/* Réduire la hauteur du MenuBar */
+.custom-menu-bar {
+    -fx-background-color: #eeeeee;  /* Couleur de fond */
+    -fx-padding: 2px;  /* Réduire l'espace autour */
+}
+
+
+/* Réduire la taille des boutons du Menu */
+.custom-menu-bar .menu {
+    -fx-font-size: 12px; /* Réduire la taille du texte */
+    -fx-padding: 2px 5px; /* Réduire le padding interne */
+    -fx-background-radius: 5px; /* Ajouter des bords arrondis */
+}
+
+/* Effet hover */
+.custom-menu-bar .menu:hover {
+    -fx-background-color: #dddddd;
+}
+
+
+#playlistsMenu CheckBox{
+    -fx-text-fill: black;
+}

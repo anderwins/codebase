@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ulb.view.QueueViewController"
+            styleClass="queue-view">
+    
+    <top>
+        <VBox spacing="10" styleClass="queue-header">
+            <padding>
+                <Insets top="20" right="25" bottom="10" left="25"/>
+            </padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <!-- Titre localisé -->
+                <Label fx:id="titleLabel" text="%queue.title" styleClass="queue-title">
+                    <font>
+                        <Font name="System Bold" size="24"/>
+                    </font>
+                </Label>
+                
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <!-- Boutons localisés -->
+                <Button fx:id="playButton"
+                        text="%queue.buttonPlay"
+                        onAction="#handlePlayQueueClick" 
+                        styleClass="play-button" defaultButton="true"/>
+                <Button fx:id="clearButton"
+                        text="%queue.buttonClear"
+                        onAction="#handleClearQueueClick" 
+                        styleClass="clear-button"/>
+            </HBox>
+            
+            <Separator/>
+        </VBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="queue-tracks-container">
+            <VBox spacing="5" styleClass="queue-tracks-list">
+                <padding>
+                    <Insets top="10" right="25" bottom="20" left="25"/>
+                </padding>
+                
+                <!-- Section title localisé -->
+                <Label fx:id="sectionTitleLabel" text="%queue.sectionTitle" styleClass="section-title">
+                    <font>
+                        <Font name="System Bold" size="16"/>
+                    </font>
+                </Label>
+                
+                <VBox fx:id="trackContainer" spacing="10" styleClass="track-list">
+                    <!-- Tracks ajoutés dynamiquement -->
+                </VBox>
+                
+                <!-- Message vide localisé -->
+                <Label fx:id="emptyQueueLabel"
+                       text="%queue.empty"
+                       visible="false"
+                       styleClass="empty-queue-label"
+                       alignment="CENTER">
+                    <VBox.margin>
+                        <Insets top="30"/>
+                    </VBox.margin>
+                </Label>
+            </VBox>
+        </ScrollPane>
+    </center>
+    
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="queue-footer">
+            <padding>
+                <Insets top="10" right="25" bottom="20" left="25"/>
+            </padding>
+            
+            <!-- Statut de la queue (mis à jour dynamiquement) -->
+            <Text fx:id="queueStatus" styleClass="queue-status"/>
+        </HBox>
+    </bottom>
+</BorderPane>

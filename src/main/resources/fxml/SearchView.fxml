@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ulb.view.SearchViewController"
+      spacing="20"
+      styleClass="search-view">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Champ de recherche -->
+    <HBox spacing="10" alignment="CENTER" styleClass="search-container">
+        <TextField fx:id="searchField"
+                   styleClass="search-field"
+                   promptText="%search.promptText"
+                   HBox.hgrow="ALWAYS"
+                   onAction="#handleSearchAction"/>
+        <ComboBox fx:id="searchTypeComboBox"
+                  promptText="%search.selectType"
+                  prefWidth="120"/>
+    </HBox>
+
+    <!-- Résultats de recherche -->
+    <VBox spacing="16" styleClass="recent-section">
+        <Label fx:id="resultsLabel"
+               text="%search.results"
+               styleClass="section-title"/>
+        <ScrollPane fitToWidth="true"
+                    fitToHeight="false"
+                    style="-fx-background-color: transparent; -fx-border-color: white;"
+                    styleClass="home-view">
+            <VBox fx:id="tracksContainer"
+                  alignment="CENTER_LEFT"
+                  styleClass="album-grid"/>
+        </ScrollPane>
+    </VBox>
+
+</VBox>

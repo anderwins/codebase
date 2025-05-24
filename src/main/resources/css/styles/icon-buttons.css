@@ -1,0 +1,19 @@
+.control-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-min-width: 36px;
+    -fx-min-height: 36px;
+    -fx-padding: 6px;
+}
+
+.control-button:hover {
+    -fx-background-color: rgba(67, 97, 238, 0.1);
+}
+
+.control-button:pressed {
+    -fx-background-color: rgba(67, 97, 238, 0.2);
+}
+
+.control-button .image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 0);
+}

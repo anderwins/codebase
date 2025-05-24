@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ulb.view.PlaylistViewController"
+            fitToWidth="true"
+            styleClass="playlist-view">
+
+    <VBox spacing="20" styleClass="playlist-content">
+
+        <!-- Header Section with Playlist Info -->
+        <StackPane fx:id="headerBackground"
+                   styleClass="playlist-header-background">
+            <VBox spacing="20" styleClass="playlist-header">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <!-- Playlist Cover Image -->
+                    <StackPane styleClass="playlist-cover-container">
+                        <Rectangle width="200" height="200"
+                                   styleClass="playlist-cover-placeholder"/>
+                        <ImageView fx:id="playlistCover"
+                                   fitWidth="200" fitHeight="200"
+                                   preserveRatio="true"/>
+                    </StackPane>
+
+                    <!-- Playlist Info -->
+                    <VBox spacing="10" alignment="CENTER_LEFT">
+                        <!-- Label statique "PLAYLIST" traduit -->
+                        <Label fx:id="playlistLabel"
+                               text="%playlist.label"
+                               styleClass="playlist-label"/>
+                        <!-- Titre de la playlist dynamique -->
+                        <Label fx:id="title"
+                               text="Playlist Title"
+                               styleClass="playlist-title"/>
+
+                        <HBox spacing="10"
+                              alignment="CENTER_LEFT"
+                              styleClass="playlist-details">
+                            <Label fx:id="trackCount"
+                                   text="0 tracks"
+                                   styleClass="playlist-info"/>
+                            <Text text="•"
+                                  styleClass="playlist-info-separator"/>
+                            <Label fx:id="totalDuration"
+                                   text="0 min"
+                                   styleClass="playlist-info"/>
+                        </HBox>
+
+                        <HBox spacing="10"
+                              alignment="CENTER_LEFT"
+                              styleClass="playlist-actions">
+                            <Button fx:id="playButton"
+                                    text="%playlist.buttonPlay"
+                                    onAction="#handlePlayPlaylistClick"
+                                    styleClass="play-button"/>
+                            <Button fx:id="clearButton"
+                                    text="%playlist.buttonClear"
+                                    onAction="#handleClearPlaylistClick"
+                                    styleClass="clear-button"/>
+                        </HBox>
+
+                        <HBox spacing="10"
+                              alignment="CENTER_LEFT"
+                              styleClass="playlist-actions">
+                            <ToggleButton fx:id="shuffleButton"
+                                          text="%playlist.buttonShuffle"
+                                          onAction="#handleShuffle"
+                                          styleClass="shuffle-button"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </StackPane>
+
+        <!-- Tracks Section -->
+        <VBox spacing="10" styleClass="tracks-section">
+            <padding>
+                <Insets top="0" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <!-- Track Headers -->
+            <HBox spacing="10"
+                  alignment="CENTER_LEFT"
+                  styleClass="track-header-row">
+                <Label text="#"
+                       styleClass="track-header-number"
+                       HBox.hgrow="NEVER"
+                       minWidth="30"/>
+                <!-- Ici on ajoute les fx:id pour que le controller les injecte -->
+                <Label fx:id="headerTitle"
+                       text="%playlist.headerTitle"
+                       styleClass="track-header-title"
+                       HBox.hgrow="ALWAYS"
+                       maxWidth="Infinity"/>
+                <Label fx:id="headerAlbum"
+                       text="%playlist.headerAlbum"
+                       styleClass="track-header-album"
+                       HBox.hgrow="SOMETIMES"
+                       minWidth="150"/>
+                <Label fx:id="headerDuration"
+                       text="%playlist.headerDuration"
+                       styleClass="track-header-duration"
+                       HBox.hgrow="NEVER"
+                       minWidth="80"/>
+                <Region minWidth="30" HBox.hgrow="NEVER"/>  <!-- Espace pour le drag handle -->
+            </HBox>
+
+            <!-- Separator -->
+            <Separator styleClass="track-separator"/>
+
+            <!-- Track List Container -->
+            <VBox fx:id="trackContainer"
+                  spacing="5"
+                  styleClass="track-list-container">
+                <!-- Les pistes seront ajoutées dynamiquement -->
+            </VBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

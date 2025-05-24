@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Rectangle?>
+
+<StackPane fx:id="contentArea"
+           xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="ulb.view.HomeViewController">
+    
+    <ScrollPane fitToWidth="true" styleClass="home-view">
+        <VBox fx:id="homeContainer" spacing="30" styleClass="home-content">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+            
+            <!-- Titre -->
+            <Label fx:id="welcomeLabel" text="%home.title" styleClass="welcome-label"/>
+            
+            <!-- Top Genres Section -->
+            <VBox spacing="16" styleClass="genres-section">
+                <Label fx:id="topGenresLabel" text="%home.topGenres" styleClass="section-title"/>
+                <HBox spacing="16" alignment="CENTER_LEFT">
+                    <Button fx:id="tagPopButton"       text="%home.buttonPop"       onMouseClicked="#handleTagClick" styleClass="genre-pill"/>
+                    <Button fx:id="tagRockButton"      text="%home.buttonRock"      onMouseClicked="#handleTagClick" styleClass="genre-pill"/>
+                    <Button fx:id="tagHipHopButton"    text="%home.buttonHipHop"    onMouseClicked="#handleTagClick" styleClass="genre-pill"/>
+                    <Button fx:id="tagElectronicButton" text="%home.buttonElectronic" onMouseClicked="#handleTagClick" styleClass="genre-pill"/>
+                    <Button fx:id="tagJazzButton"      text="%home.buttonJazz"      onMouseClicked="#handleTagClick" styleClass="genre-pill"/>
+                    <Button fx:id="tagClassicalButton" text="%home.buttonClassical" onMouseClicked="#handleTagClick" styleClass="genre-pill"/>
+                </HBox>
+            </VBox>
+
+            <!-- Playlists Section -->
+            <VBox spacing="16" styleClass="recent-section">
+                <Label fx:id="popularAlbumsLabel" text="%home.popularAlbums" styleClass="section-title"/>
+                <HBox spacing="20" styleClass="album-grid">
+
+                    <VBox fx:id="playlistCard1" styleClass="album-card" onMouseClicked="#handlePlaylistClick">
+                        <StackPane styleClass="album-art-container">
+                            <Rectangle width="150" height="150" styleClass="album-art-placeholder"/>
+                            <Label fx:id="playlistOverlay1" text="%home.playlist1" styleClass="album-art-overlay"/>
+                        </StackPane>
+                        <Label fx:id="playlistTitleLabel1" text="%home.playlistTitle1" styleClass="album-title"/>
+                        <Label fx:id="artistNameLabel1"    text="%home.artistName1"    styleClass="album-artist"/>
+                    </VBox>
+                    
+                    <VBox fx:id="playlistCard2" styleClass="album-card" onMouseClicked="#handlePlaylistClick">
+                        <StackPane styleClass="album-art-container">
+                            <Rectangle width="150" height="150" styleClass="album-art-placeholder"/>
+                            <Label fx:id="playlistOverlay2" text="%home.playlist2" styleClass="album-art-overlay"/>
+                        </StackPane>
+                        <Label fx:id="playlistTitleLabel2" text="%home.playlistTitle2" styleClass="album-title"/>
+                        <Label fx:id="artistNameLabel2"    text="%home.artistName2"    styleClass="album-artist"/>
+                    </VBox>
+                    
+                    <VBox fx:id="playlistCard3" styleClass="album-card" onMouseClicked="#handlePlaylistClick">
+                        <StackPane styleClass="album-art-container">
+                            <Rectangle width="150" height="150" styleClass="album-art-placeholder"/>
+                            <Label fx:id="playlistOverlay3" text="%home.playlist3" styleClass="album-art-overlay"/>
+                        </StackPane>
+                        <Label fx:id="playlistTitleLabel3" text="%home.playlistTitle3" styleClass="album-title"/>
+                        <Label fx:id="artistNameLabel3"    text="%home.artistName3"    styleClass="album-artist"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Recently Added Section -->
+            <VBox spacing="16" styleClass="recent-section">
+                <Label fx:id="popularSongsLabel" text="%home.popularSongs" styleClass="section-title"/>
+                <HBox spacing="20" styleClass="album-grid">
+                    <HBox fx:id="PopularSongs" spacing="10" alignment="CENTER">
+                        <Label fx:id="notImplementedLabel" text="%home.notImplemented" styleClass="section-title"/>
+                    </HBox>
+                </HBox>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</StackPane>
