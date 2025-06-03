@@ -98,3 +98,69 @@
 ### Database
 17. Why are dependencies for both MySQL and SQLite included? Are they used for different purposes or to offer choice?
 18. How is the database schema managed (migrations, initial setup)? What roles do `DbInitializer` and `DatabaseSeeder` play?
+
+---
+
+## Detailed Technical Questions
+
+1.  **`AudioPlayerController.java` - `showLyrics` Method Complexity & Error Handling:**
+    The method `ulb.controller.AudioPlayerController#showLyrics(Track track)` involves multiple steps to find lyrics (local .lrc, local .txt, online search, then loading from the online-found path). Each step seems to have its own error logging and `AlertManager` calls.
+    *   Critique this approach. Could this lead to a confusing user experience with multiple alerts?
+    *   How could the error handling and reporting be centralized or made more user-friendly for this multi-step process?
+    *   Does the synchronous call to `lrcLibService.searchAndSaveLyrics(track)` potentially block the UI thread? If so, what is the impact, and how should this be addressed?
+
+2.  **`AudioPlayerController.java` - Logger Choice:**
+    In `ulb.controller.AudioPlayerController`, the logger is initialized as `Logger.getLogger(DbInitializer.class.getName())`.
+    *   Is there a specific reason for using `DbInitializer.class.getName()` here instead of `AudioPlayerController.class.getName()`?
+    *   What are the implications of this choice for log analysis and filtering?
+
+3.  **`DbManagerInsert.java` - `insertTrack` Method:**
+    The `ulb.dao.DbManagerInsert#insertTrack(Track track)` method performs several checks and potential inserts (artist, album, tag) before inserting the track itself. Each of these operations might involve a separate query or `getId` call.
+    *   Discuss the atomicity of this operation. What happens if, for example, `insertTrack` succeeds but the subsequent `insertTrackTag` fails?
+    *   How does this sequence of individual checks and inserts affect performance, especially if adding many tracks?
+    *   Could this method benefit from database transactions to ensure all related inserts succeed or fail together?
+
+4.  **`DbManagerInsert.java` - Error Handling in `addTrackToPlaylist`:**
+    In `ulb.dao.DbManagerInsert#addTrackToPlaylist(String playlistTitle, String trackTitle)`, a `SQLException` during the pre-check `SELECT 1 FROM PlaylistTrack WHERE playlist_id = ? AND track_id = ?` is caught, logged with a warning ("Erreur lors de la vérification de doublon dans la playlist"), and then the code proceeds to attempt the main insert.
+    *   What are the potential consequences of ignoring this specific SELECT query failure and attempting the insert anyway?
+    *   Is it safe to assume the track is not a duplicate if this check fails? What if the failure was due to a temporary connection issue that resolves before the insert?
+
+5.  **`DbManager.java` - Ambiguity of `getId` Return Value:**
+    The method `ulb.dao.DbManager#getId(String query, String parameter)` returns -1 if the entity is not found, but also returns -1 if a `SQLException` occurs during the query.
+    *   How can a caller reliably distinguish between "not found" and "a database error occurred"?
+    *   Why was this design chosen over, for example, throwing a custom `EntityNotFoundException` or re-throwing a `DbManagerException` in case of `SQLException`?
+
+6.  **`DbManager.java` - "Temporary" Dependencies:**
+    The `DbManager` class contains fields `protected TrackLibrary trackLibrary;` and `protected ChangeTracker changes;`, both commented with "// tmp, should be moved" or "// same".
+    *   Why might these dependencies be considered "temporary" or misplaced within an abstract DAO manager class?
+    *   What design principles (e.g., Single Responsibility Principle, Separation of Concerns) might be violated by their current placement? Where would be a more suitable location for managing these dependencies?
+
+7.  **`model.Track.java` - Object Creation and Mutability:**
+    The `ulb.model.Track` class does not use a Builder pattern, instead offering two constructors and an `assign(Track t)` method. Many setters like `setTitle()`, `setArtist()` also call `notifyChangeMetadata()`.
+    *   What are the pros and cons of this constructor/setter/assign approach for `Track` objects compared to using an immutable Builder pattern, especially considering the `notifyChangeMetadata()` calls on individual setters?
+    *   How does the current design impact the predictability of `Track` object states, particularly if they are shared or modified concurrently?
+
+8.  **`MainController.java` - Constructor Responsibilities:**
+    The constructor of `ulb.controller.MainController` is responsible for instantiating numerous other controllers (e.g.`HomeController`, `PlaylistController`, etc.) and associating them with views loaded via `mainViewController.addPage(...)`.
+    *   What are the potential drawbacks of having such a "heavy" constructor in terms of testability, maintainability, and coupling?
+    *   Could a dependency injection framework or a factory pattern simplify this setup and improve decoupling? Justify your answer.
+
+9.  **`MainViewController.java` - FXML Loading and Controller Factories:**
+    The `ulb.view.MainViewController#addPage(String fxmlFile, E id)` method uses `FXMLLoader` to load FXML files but does not use `FXMLLoader#setControllerFactory(...)`.
+    *   What is the purpose of `FXMLLoader#setControllerFactory`?
+    *   What benefits might have been missed by not using it here, for example, in terms of managing dependencies for the controllers being loaded (like `HomeViewController`, `PlaylistViewController`, etc.)?
+
+10. **`Config.java` - Configuration Management & Error Handling:**
+    The `ulb.Config` class uses public static final fields for configuration and has a static `setUpFolders()` method. If `setUpFolders()` fails, `Main.java` catches `Config.CouldNotSetUpDataFolder` and the application exits via `return;` in `main`.
+    *   Discuss the testability and flexibility of using public static fields for configuration versus an instance-based configuration object (possibly read from a properties file).
+    *   Is silently exiting the application in `Main.java` if `Config.setUpFolders()` fails the most appropriate error handling strategy? What are the alternatives and their implications?
+
+11. **Testing Policy and Coverage (General Question):**
+    The `pom.xml` includes TestFX, JUnit 5, and Mockito.
+    *   What was the general testing policy for this project? For example, what determined if a class or method required a unit test, an integration test, or a UI test (using TestFX)?
+    *   Are there any critical components or functionalities that you know are not currently covered by automated tests? Why might this be the case, and what are the associated risks? (This is a self-reflection question for the original developers).
+
+12. **`LanguageManager.java` - Singleton Usage:**
+    In `MainViewController.java`, `LanguageManager.getInstance()` is used, suggesting it's implemented as a Singleton.
+    *   What are the benefits of using the Singleton pattern for `LanguageManager` in this application?
+    *   What are the potential drawbacks or criticisms of using Singletons, particularly concerning testability and global state?
